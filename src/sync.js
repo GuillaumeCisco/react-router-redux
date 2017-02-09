@@ -17,7 +17,7 @@ const defaultSelectLocationState = state => state.routing
  */
 export default function syncHistoryWithStore(history, store, {
   selectLocationState = defaultSelectLocationState,
-  adjustUrlOnReplay = true, 
+  adjustUrlOnReplay = true,
   query_support = false
 } = {}) {
   // Ensure that the reducer is mounted on the store and functioning properly.
@@ -120,6 +120,10 @@ export default function syncHistoryWithStore(history, store, {
       payload: currentLocation
     })
   }
+
+  // init store
+  handleLocationChange(history.location);
+
   unsubscribeFromHistory = history.listen(handleLocationChange)
 
   // support history 3.x
